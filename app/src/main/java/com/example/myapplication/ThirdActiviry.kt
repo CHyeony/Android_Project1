@@ -9,7 +9,7 @@ import com.example.mypomodorotimer.NotificationHelper
 
 
 
-class ThirdActivity : AppCompatActivity{
+class ThirdActivity : AppCompatActivity() {
 
 
     private lateinit var binding: ActivitySplashBinding
