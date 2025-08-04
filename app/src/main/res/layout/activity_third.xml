@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/darkGray"
+    tools:context=".ThirdActiviry">
+
+    <!-- 세션 타입 표시 -->
+    <TextView
+        android:id="@+id/text_session_type"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="48dp"
+        android:text="@string/work_time"
+        android:fontFamily="@font/mainfont_regular"
+        android:textColor="@android:color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+    <!-- 원형 프로그레스바 -->
+    <ProgressBar
+        android:id="@+id/progress_countdown"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="280dp"
+        android:layout_height="280dp"
+        android:layout_marginTop="32dp"
+        android:indeterminate="false"
+        android:max="100"
+        android:progress="0"
+        android:progressDrawable="@drawable/circular_progress"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_session_type" />
+
+    <!-- 타이머 시간 표시 -->
+    <TextView
+        android:id="@+id/text_countdown"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/default_time"
+        android:textColor="@android:color/white"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/mainfont_regular"
+        app:layout_constraintBottom_toBottomOf="@+id/progress_countdown"
+        app:layout_constraintEnd_toEndOf="@+id/progress_countdown"
+        app:layout_constraintStart_toStartOf="@+id/progress_countdown"
+        app:layout_constraintTop_toTopOf="@+id/progress_countdown" />
+
+    <!-- 포모도로 카운트 표시 -->
+    <TextView
+        android:id="@+id/text_pomodoro_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/pomodoro_count_zero"
+        android:fontFamily="@font/mainfont_regular"
+        android:textColor="@android:color/white"
+        android:textSize="38sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progress_countdown" />
+
+    <!-- 컨트롤 버튼들 -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="48dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <!-- 정지 버튼 -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_stop"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:enabled="false"
+            android:src="@android:drawable/ic_delete"
+            android:contentDescription="@string/stop_timer"
+            app:backgroundTint="@color/stop_button"
+            app:fabSize="normal"
+            app:tint="@android:color/white" />
+
+        <!-- 재생/일시정지 버튼 -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_play_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:src="@android:drawable/ic_media_play"
+            android:contentDescription="@string/play_pause_timer"
+            app:backgroundTint="@color/evBlue"
+            app:fabSize="normal"
+            app:tint="@android:color/white" />
+
+        <!-- 건너뛰기 버튼 -->
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_skip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:src="@android:drawable/ic_media_next"
+            android:contentDescription="@string/skip_timer"
+            android:visibility="gone"
+            app:backgroundTint="@color/skip_button"
+            app:fabSize="normal"
+            app:tint="@android:color/white" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

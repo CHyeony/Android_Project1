@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -34,6 +35,11 @@ class FirstFragment : Fragment() {
 
         binding.buttonDiary.setOnClickListener {
             findNavController().navigate(R.id.action_FirstFragment_to_SecondFragment)
+        }
+
+        binding.buttonTimer.setOnClickListener {
+            val intent = Intent(requireActivity(), ThirdActivity::class.java)
+            startActivity(intent)
         }
     }
 
