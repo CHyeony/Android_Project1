@@ -12,7 +12,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat
 import com.example.myapplication.R
-import com.example.myapplication.ThirdActiviry
+import com.example.myapplication.ThirdActivity
 import java.util.Locale
 
 /**
@@ -31,7 +31,7 @@ class NotificationHelper(private val context: Context) {
      * 타이머가 백그라운드에서 실행 중일 때 표시하는 알림
      */
     fun showTimerRunningNotification(secondsRemaining: Long, sessionType: String) {
-        val intent = Intent(context, ThirdActiviry::class.java).apply {
+        val intent = Intent(context, ThirdActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
 
@@ -74,7 +74,7 @@ class NotificationHelper(private val context: Context) {
         // 실행 중 알림 제거
         cancelTimerRunningNotification()
 
-        val intent = Intent(context, ThirdActiviry::class.java).apply {
+        val intent = Intent(context, ThirdActivity::class.java).apply {
             flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
         }
 

@@ -26,6 +26,10 @@
             android:name=".MainActivity"
             android:exported="true"/>
 
+        <activity
+            android:name=".ThirdActivity"
+            android:exported="true"/>
+
 
     </application>
 
