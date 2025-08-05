@@ -7,7 +7,7 @@
     <string name="next">Next</string>
     <string name="previous">Previous</string>
     <string name="diary">기록</string>
-    <string name="timer">타이머</string>
+    <string name="timer">단식 타이머</string>
     <string name="running">런닝</string>
     <string name="loading">LOADING</string>
 
@@ -18,10 +18,10 @@
 
 
     <!-- Timer UI -->
-    <string name="work_time">뛴 시간</string>
-    <string name="break_time">휴식 시간</string>
+    <string name="work_time">단식 시간</string>
+    <string name="break_time">밥먹자!!!!!!!!!!!!!!!</string>
     <string name="long_break_time">긴 휴식 시간</string>
-    <string name="default_time">25:00</string>
+    <string name="default_time">12:00:00</string>
     <string name="pomodoro_count_zero">완료한 포모도로: 0</string>
     <string name="pomodoro_count_format">완료한 포모도로: %d</string>
     <!-- Content descriptions -->
@@ -43,11 +43,11 @@
     <!-- Notifications -->
     <string name="notification_permission_granted">알림 권한이 허용되었습니다</string>
     <string name="sound_play_error">알림음을 재생할 수 없습니다</string>
-    <string name="work_complete_message">작업 시간이 끝났습니다. 휴식하세요!</string>
-    <string name="break_complete_message">휴식 시간이 끝났습니다. 다시 집중하세요!</string>
+    <string name="work_complete_message">단식 시간이 끝났습니다. 밥먹어!!</string>
+    <string name="break_complete_message">밥 시간 끝!! 단식시작! </string>
     <string name="timer_running_title">포모도로 타이머 실행 중</string>
     <string name="timer_notification_format">%s - %s 남음</string>
-    <string name="work_in_progress">작업 중</string>
-    <string name="break_in_progress">휴식 중</string>
+    <string name="work_in_progress">단식 중</string>
+    <string name="break_in_progress">밥먹는 중</string>
 
 </resources>
