@@ -402,15 +402,27 @@ class ThirdActivity : AppCompatActivity() {
         val prefs = getSharedPreferences(PREFS_NAME, MODE_PRIVATE)
 
         timerState = TimerState.entries[prefs.getInt(KEY_TIMER_STATE, 0)]
-        secondsRemaining = prefs.getLong(KEY_SECONDS_REMAINING, 0)
-        timerLengthSeconds = prefs.getLong(KEY_TIMER_LENGTH, WORK_TIME_MINUTES * 60)
         isWorkTime = prefs.getBoolean(KEY_IS_WORK_TIME, true)
         pomodoroCount = prefs.getInt(KEY_POMODORO_COUNT, 0)
 
-        // 초기 설정
-        if (secondsRemaining == 0L) {
-            secondsRemaining = WORK_TIME_MINUTES * 60
-            timerLengthSeconds = WORK_TIME_MINUTES * 60
+        // 타이머가 정지 상태일 때는 항상 새로운 시간 설정 적용
+        if (timerState == TimerState.STOPPED) {
+            if (isWorkTime) {
+                secondsRemaining = WORK_TIME_MINUTES * 60
+                timerLengthSeconds = WORK_TIME_MINUTES * 60
+            } else {
+                // 휴식 시간 설정
+                timerLengthSeconds = if (pomodoroCount % 4 == 0 && pomodoroCount > 0) {
+                    LONG_BREAK_TIME_MINUTES * 60
+                } else {
+                    BREAK_TIME_MINUTES * 60
+                }
+                secondsRemaining = timerLengthSeconds
+            }
+        } else {
+            // 타이머가 실행 중이거나 일시정지 상태일 때만 저장된 값 사용
+            secondsRemaining = prefs.getLong(KEY_SECONDS_REMAINING, WORK_TIME_MINUTES * 60)
+            timerLengthSeconds = prefs.getLong(KEY_TIMER_LENGTH, WORK_TIME_MINUTES * 60)
         }
 
         binding.textPomodoroCount.text = getString(R.string.pomodoro_count_format, pomodoroCount)
