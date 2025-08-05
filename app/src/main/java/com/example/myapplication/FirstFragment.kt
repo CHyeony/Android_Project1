@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.myapplication.databinding.FragmentFirstBinding
 
@@ -43,8 +44,11 @@ class FirstFragment : Fragment() {
         }
 
         binding.buttonTest.setOnClickListener{
-
+            Toast.makeText(context, "뭐넣지뭐넣지뭐넣지뭐넣지", Toast.LENGTH_SHORT).show()
         }
+
+
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -71,6 +71,9 @@ class ThirdActivity : AppCompatActivity() {
         binding = ActivityThirdBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        // 이미지
+        val imageView = binding.imageViewCenter
+
     // Android O부터 NotificationChannel 필수
         createNotificationChannel()
         notificationHelper = NotificationHelper(this)
@@ -80,7 +83,7 @@ class ThirdActivity : AppCompatActivity() {
         checkNotificationPermission()
 
         // 초기 배경색 설정
-        binding.root.setBackgroundColor(ContextCompat.getColor(this, R.color.work_background))
+        binding.root.setBackgroundColor(ContextCompat.getColor(this, R.color.darkGray))
 
         // 버튼 리스너 설정
         setupClickListeners()
@@ -239,13 +242,23 @@ class ThirdActivity : AppCompatActivity() {
             }
         }
 
-        // 배경색 변경
-        val backgroundColor = if (isWorkTime) {
-            ContextCompat.getColor(this, R.color.darkGray)
+
+        // 배경 변경 CUSTOM
+        val imageResId = if (isWorkTime) {
+            R.drawable.hungry_img  // 단식 기간 이미지
         } else {
-            ContextCompat.getColor(this, R.color.break_background)
+            R.drawable.eat_img     // 단식 끝 이미지 밥먹어
         }
-        binding.root.setBackgroundColor(backgroundColor)
+
+        binding.imageViewCenter.setImageResource(imageResId)
+//        // 배경색 변경
+//        val backgroundColor = if (isWorkTime) {
+//            ContextCompat.getColor(this, R.color.darkGray)
+//        } else {
+//            ContextCompat.getColor(this, R.color.break_background)
+//        }
+//        binding.root.setBackgroundColor(backgroundColor)
+
 
         updateCountdownUI()
     }

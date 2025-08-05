@@ -43,7 +43,7 @@
         android:layout_height="wrap_content"
         android:text="@string/default_time"
         android:textColor="@android:color/white"
-        android:textSize="60sp"
+        android:textSize="45dp"
         android:textStyle="bold"
         android:fontFamily="@font/mainfont_regular"
         app:layout_constraintBottom_toBottomOf="@+id/progress_countdown"
@@ -65,7 +65,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/progress_countdown" />
 
+
     <!-- 컨트롤 버튼들 -->
+
+    <ImageView
+        android:id="@+id/imageViewCenter"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/hungry_img"
+
+        app:layout_constraintTop_toBottomOf="@id/text_pomodoro_count"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"/>
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
