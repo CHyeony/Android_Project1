@@ -50,7 +50,7 @@ class ThirdActivity : AppCompatActivity() {
 
 
     companion object {
-        // 테스트 시 1L로 변경 가능, 실제 사용 시 25L
+        // 테스트 시 1L로 변경 가능, 실제 사용 시 25L 근데 간헐단식 12시간 이니까 12시간 (*60분)
         private const val WORK_TIME_MINUTES = 12L * 60L
         private const val BREAK_TIME_MINUTES = 30L
         // 4번째 포모도로 후 긴 휴식
