@@ -41,7 +41,10 @@ class FirstFragment : Fragment() {
             val intent = Intent(requireActivity(), ThirdActivity::class.java)
             startActivity(intent)
         }
-    }
+
+        binding.buttonTest.setOnClickListener{
+
+        }
 
     override fun onDestroyView() {
         super.onDestroyView()

@@ -243,7 +243,7 @@ class ThirdActivity : AppCompatActivity() {
         val backgroundColor = if (isWorkTime) {
             ContextCompat.getColor(this, R.color.darkGray)
         } else {
-            ContextCompat.getColor(this, R.color.evBlue)
+            ContextCompat.getColor(this, R.color.break_background)
         }
         binding.root.setBackgroundColor(backgroundColor)
 
