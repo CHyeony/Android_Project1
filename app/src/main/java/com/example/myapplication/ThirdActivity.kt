@@ -411,9 +411,19 @@ class ThirdActivity : AppCompatActivity() {
         pomodoroCount = prefs.getInt(KEY_POMODORO_COUNT, 0)
 
         // 초기 설정
-        if (secondsRemaining == 0L) {
-            secondsRemaining = WORK_TIME_MINUTES * 60
+//        if (secondsRemaining == 0L) {
+//            secondsRemaining = WORK_TIME_MINUTES * 60
+//            timerLengthSeconds = WORK_TIME_MINUTES * 60
+//        }
+// 저장 값이 0일 때만 적용...
+        if (timerState == TimerState.STOPPED) {
+
             timerLengthSeconds = WORK_TIME_MINUTES * 60
+            secondsRemaining = WORK_TIME_MINUTES * 60
+        } else {
+
+            secondsRemaining = prefs.getLong(KEY_SECONDS_REMAINING, WORK_TIME_MINUTES * 60)
+            timerLengthSeconds = prefs.getLong(KEY_TIMER_LENGTH, WORK_TIME_MINUTES * 60)
         }
 
         binding.textPomodoroCount.text = getString(R.string.pomodoro_count_format, pomodoroCount)
