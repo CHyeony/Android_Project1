@@ -21,6 +21,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+
     <!-- 원형 프로그레스바 -->
     <ProgressBar
         android:id="@+id/progress_countdown"

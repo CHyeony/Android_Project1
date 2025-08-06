@@ -50,9 +50,12 @@ class ThirdActivity : AppCompatActivity() {
 
 
     companion object {
-        // 테스트 시 1L로 변경 가능, 실제 사용 시 25L 근데 간헐단식 12시간 이니까 12시간 (*60분)
-        private const val WORK_TIME_MINUTES = 12L * 60L
-        private const val BREAK_TIME_MINUTES = 30L
+        // 테스트 시 1L로 변경 가능, 실제 사용 시 25L
+        /* 근데 간헐 단식 16:8 12시간 (*60분)
+         16시간 단식 + 8시간 안에 식사 (나중에 단식 시간 설정값으로 변경예정)
+        * */
+        private const val WORK_TIME_MINUTES = 16L * 60L
+        private const val BREAK_TIME_MINUTES = 8L * 60L
         // 4번째 포모도로 후 긴 휴식
         private const val LONG_BREAK_TIME_MINUTES = 60L
         private const val PREFS_NAME = "PomodoroPrefs"

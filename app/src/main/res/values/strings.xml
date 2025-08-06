@@ -15,13 +15,23 @@
         나랑 식단할사람
     </string>
 
+    <string-array name="work_time_options">
+        <item>12시간</item>
+        <item>13시간</item>
+        <item>14시간</item>
+        <item>15시간</item>
+        <item>16시간</item>
+        <item>17시간</item>
+        <item>18시간</item>
+    </string-array>
+
 
 
     <!-- Timer UI -->
     <string name="work_time">단식 시간</string>
     <string name="break_time">밥먹자!!!!!!!!!!!!!!!</string>
     <string name="long_break_time">긴 휴식 시간</string>
-    <string name="default_time">12:00:00</string>
+    <string name="default_time">16:00:00</string>
     <string name="pomodoro_count_zero">완료한 포모도로: 0</string>
     <string name="pomodoro_count_format">완료한 포모도로: %d</string>
     <!-- Content descriptions -->
