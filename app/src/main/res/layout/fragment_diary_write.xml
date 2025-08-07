@@ -1,9 +1,37 @@
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/darkGray">
+    android:background="@color/darkGray"
+    tools:context=".diary.DiaryWriteFragment">
+
+    <!-- 일기 제목 입력 -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout_title"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:hint="일기 제목"
+        android:fontFamily="@font/minguk"
+        app:boxStrokeColor="@color/white"
+        app:hintTextColor="@color/white"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText_diary_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/minguk"
+            android:textColor="@color/white"
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <!-- 찍은 사진 미리보기 -->
     <ImageView
@@ -12,48 +40,71 @@
         android:layout_height="200dp"
         android:layout_marginTop="16dp"
         android:scaleType="centerCrop"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:src="@drawable/ic_launcher_adaptive_fore_custom"
+    app:layout_constraintTop_toBottomOf="@id/textInputLayout_title"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- 음식명 -->
-    <TextView
-        android:id="@+id/textView_food_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="음식: -"
-        android:fontFamily="@font/minguk"
-        android:textColor="@color/white"
-        android:textSize="28sp"
+    <!-- 인식된 음식 목록을 표시할 RecyclerView -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView_food_items"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintTop_toBottomOf="@id/imageView_preview"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/textView_total_calorie"
+        tools:listitem="@layout/item_food_entry" />
 
-
-    <!-- 칼로리 -->
+    <!-- 총 칼로리 -->
     <TextView
-        android:id="@+id/textView_calorie"
+        android:id="@+id/textView_total_calorie"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="칼로리: - kcal"
-        android:textColor="@color/white"
+        android:text="총 칼로리: 0 kcal"
         android:fontFamily="@font/minguk"
-        android:textSize="28sp"
-        app:layout_constraintTop_toBottomOf="@id/textView_food_name"
-        app:layout_constraintStart_toStartOf="@id/textView_food_name"
-        android:layout_marginTop="8dp" />
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/button_save_diary"
+    app:layout_constraintEnd_toEndOf="parent"
+    android:layout_marginEnd="16dp"
+    android:layout_marginBottom="16dp" />
 
     <!-- 사진 찍기 버튼 -->
     <Button
         android:id="@+id/button_take_photo"
+        style="@style/ButtonStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="사진 찍기"
-        app:layout_constraintTop_toBottomOf="@id/textView_calorie"
+        android:text="음식 사진 찍기"
+
+        app:strokeColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@id/button_save_diary"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="16dp"
-        style="@style/ButtonStyle"/>
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- 일기 저장 버튼 (기존 사진 찍기 버튼 위치 또는 그 아래) -->
+    <Button
+        android:id="@+id/button_save_diary"
+        style="@style/ButtonStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="일기 저장"
+
+        app:strokeColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="24dp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+

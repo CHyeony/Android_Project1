@@ -1,82 +1,41 @@
-package com.example.myapplication.diary
+package com.example.myapplication.diary // 실제 패키지명으로 변경
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.myapplication.databinding.ItemDiaryEntryBinding
-import java.text.SimpleDateFormat
-import java.util.Locale
+import com.example.myapplication.databinding.ItemDiaryEntryBinding // ViewBinding
 
-
-/*
-*  LIST VIEW ADPATER
-* */
-
-// class DiaryAdapter --(상속)--> ListAdapter<DiaryEntry, ViewHolder> (안드로이드 내장 추상 클래스) --> RecyclerView.Adapter
-/* [JAVA로 치면 ] public class DiaryAdapter extends ListAdapter<DiaryEntry, DiaryAdapter.DiaryViewHolder> {
-    private OnItemClickListener onItemClick;
-
-    public interface OnItemClickListener {
-        void onItemClick(DiaryEntry entry);
-    }
-
-    public DiaryAdapter(OnItemClickListener listener) {
-        super(new DiaryDiffCallback());
-        this.onItemClick = listener;
-    }
-    ..이하 생략
-* }
-* */
 class DiaryAdapter(
-    private val onItemClick: (DiaryEntry) -> Unit
-) : ListAdapter<DiaryEntry, DiaryAdapter.DiaryViewHolder>(DiaryDiffCallback()) {
+    private var diaryEntries: List<DiaryEntry>,
+    private val onItemClick: (DiaryEntry) -> Unit // 아이템 클릭 리스너 추가 (선택 사항)
+) : RecyclerView.Adapter<DiaryAdapter.DiaryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DiaryViewHolder {
-        val binding = ItemDiaryEntryBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return DiaryViewHolder(binding, onItemClick)
+        val binding =
+            ItemDiaryEntryBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return DiaryViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: DiaryViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        val entry = diaryEntries[position]
+        holder.bind(entry)
+        holder.itemView.setOnClickListener { onItemClick(entry) } // 아이템 클릭 시
     }
 
-    class DiaryViewHolder(
-        private val binding: ItemDiaryEntryBinding,
-        private val onItemClick: (DiaryEntry) -> Unit
-    ) : RecyclerView.ViewHolder(binding.root) { // == extends RecyclearView.ViewHolder
+    override fun getItemCount(): Int = diaryEntries.size
 
+    fun updateData(newEntries: List<DiaryEntry>) {
+        diaryEntries = newEntries
+        notifyDataSetChanged() // DiffUtil 사용 권장
+    }
+
+    class DiaryViewHolder(private val binding: ItemDiaryEntryBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(entry: DiaryEntry) {
-            binding.textviewMood.text = entry.mood
-            binding.textviewTitle.text = entry.title
-            binding.textviewContent.text = entry.content
-
-            val dateFormat = SimpleDateFormat("yyyy년 MM월 dd일", Locale.KOREAN)
-            binding.textviewDate.text = dateFormat.format(entry.date)
-
-            binding.root.setOnClickListener {
-                onItemClick(entry)
-            }
-        }
-    }
-
-    class DiaryDiffCallback : DiffUtil.ItemCallback<DiaryEntry>() {
-        override fun areItemsTheSame(oldItem: DiaryEntry, newItem: DiaryEntry): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: DiaryEntry, newItem: DiaryEntry): Boolean {
-            return oldItem == newItem
+            binding.textViewDiaryTitle.text = entry.title
+            binding.textViewDiaryDate.text = entry.date
+            binding.textViewDiaryTotalCalorie.text = "총 칼로리: ${entry.totalCalorie} kcal"
+            // 기존 내용 미리보기는 제거되었으므로 관련 코드 삭제
         }
     }
 }
-
-/*
-* 목록형 UI는 RecyclerView + Adapter 로 구현
-버튼 클릭, 텍스트 표시 등은 ViewBinding이나 findViewById로 연결
-* */

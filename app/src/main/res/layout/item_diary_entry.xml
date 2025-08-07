@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
@@ -13,54 +14,55 @@
         android:padding="16dp">
 
         <TextView
-            android:id="@+id/textview_mood"
+            android:id="@+id/textView_diary_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:textAppearance="?attr/textAppearanceHeadline6"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/textView_diary_date"
+            android:layout_marginEnd="8dp"
+            android:fontFamily="@font/minguk"
+            tools:text="일기 제목입니다." />
+
+        <TextView
+            android:id="@+id/textView_diary_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="😊"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/textview_title"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:text="일기 제목"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:maxLines="1"
-            android:ellipsize="end"
+            android:fontFamily="@font/minguk"
+            android:textAppearance="?attr/textAppearanceCaption"
+            app:layout_constraintTop_toTopOf="@id/textView_diary_title"
+            app:layout_constraintBottom_toBottomOf="@id/textView_diary_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/textview_mood"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:text="2023-10-27" />
 
+        <!-- 기존 내용 미리보기 TextView를 아래의 총 칼로리 TextView로 대체 또는 주석 처리 -->
+        <!--
         <TextView
-            android:id="@+id/textview_date"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="4dp"
-            android:text="2024년 1월 1일"
-            android:textSize="14sp"
-            android:textColor="@android:color/darker_gray"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/textview_mood"
-            app:layout_constraintTop_toBottomOf="@id/textview_title" />
-
-        <TextView
-            android:id="@+id/textview_content"
+            android:id="@+id/textView_diary_content_preview"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="일기 내용 미리보기..."
-            android:textSize="14sp"
             android:maxLines="2"
             android:ellipsize="end"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:textAppearance="?attr/textAppearanceBody2"
+            app:layout_constraintTop_toBottomOf="@id/textView_diary_title"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textview_date" />
+            app:layout_constraintEnd_toEndOf="parent"
+            tools:text="이곳에 일기 내용 미리보기가 표시됩니다. 길면 잘립니다..." />
+        -->
+
+        <TextView
+            android:id="@+id/textView_diary_total_calorie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/minguk"
+            android:layout_marginTop="8dp"
+            android:textAppearance="?attr/textAppearanceBody1"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@id/textView_diary_title"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="총 칼로리: 550 kcal" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
 </androidx.cardview.widget.CardView>
