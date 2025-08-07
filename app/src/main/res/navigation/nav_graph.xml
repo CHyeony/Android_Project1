@@ -9,7 +9,7 @@
         android:id="@+id/FirstFragment"
         android:name="com.example.myapplication.FirstFragment"
         android:label="@string/first_fragment_label"
-        android:fontFamily="@font/mainfont_regular"
+        android:fontFamily="@font/minguk"
         tools:layout="@layout/fragment_first">
 
         <action
@@ -21,13 +21,21 @@
         android:id="@+id/SecondFragment"
         android:name="com.example.myapplication.diary.SecondFragment"
         android:label="@string/second_fragment_label"
-        android:fontFamily="@font/mainfont_regular"
+        android:fontFamily="@font/minguk"
         tools:layout="@layout/fragment_second">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_SecondFragment_to_DiaryWriteFragment"
+            app:destination="@id/DiaryWriteFragment" />
     </fragment>
 
+    <fragment
+        android:id="@+id/DiaryWriteFragment"
+        android:name="com.example.myapplication.diary.DiaryWriteFragment"
+        android:label="@string/second_fragment_label"
+        android:fontFamily="@font/minguk"
+        tools:layout="@layout/fragment_diary_write">
+
+    </fragment>
 
 </navigation>

@@ -54,8 +54,8 @@ class ThirdActivity : AppCompatActivity() {
         /* 근데 간헐 단식 16:8 12시간 (*60분)
          16시간 단식 + 8시간 안에 식사 (나중에 단식 시간 설정값으로 변경예정)
         * */
-        private const val WORK_TIME_MINUTES = 16L * 60L
-        private const val BREAK_TIME_MINUTES = 8L * 60L
+        private const val WORK_TIME_MINUTES = 960L
+        private const val BREAK_TIME_MINUTES = 480L
         // 4번째 포모도로 후 긴 휴식
         private const val LONG_BREAK_TIME_MINUTES = 60L
         private const val PREFS_NAME = "PomodoroPrefs"
@@ -267,9 +267,12 @@ class ThirdActivity : AppCompatActivity() {
     }
 
     private fun updateCountdownUI() {
-        val minutesRemaining = secondsRemaining / 60
-        val secondsInMinuteRemaining = secondsRemaining % 60
-        binding.textCountdown.text = getString(R.string.timer_format, minutesRemaining, secondsInMinuteRemaining)
+        val hours = secondsRemaining / 3600
+        val minutes = (secondsRemaining % 3600) / 60
+        val seconds = secondsRemaining % 60
+
+
+        binding.textCountdown.text = getString(R.string.timer_format_hms, hours, minutes, seconds)
 
         // 프로그레스 업데이트
         // 올바른 계산식: 0에서 100으로 증가
