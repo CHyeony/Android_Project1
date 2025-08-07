@@ -52,7 +52,11 @@ class DiaryWriteFragment : Fragment() {
             foodAdapter.updateData(recognizedFoodItems)
             updateTotalCalorie()
             binding.imageViewPreview.setImageResource(android.R.color.transparent) // 이전 미리보기 이미지 제거
+
         }
+
+        // 일기 저장!
+        binding.buttonSaveDiary.setOnClickListener { saveDiaryEntry() }
     }
 
     private fun setupRecyclerView() {
@@ -247,17 +251,18 @@ class DiaryWriteFragment : Fragment() {
     private fun saveDiaryEntry() {
         val title = binding.editTextDiaryTitle.text.toString().trim()
         if (title.isEmpty()) {
-            binding.textInputLayoutTitle.error = "제목을 입력해주세요."
+            binding.textInputLayoutTitle.error = "제목을 입력 해주세요."
             return
         } else {
             binding.textInputLayoutTitle.error = null // 오류 메시지 제거
         }
 
-        if (recognizedFoodItems.isEmpty() && binding.imageViewPreview.drawable == null) {
-            // 사용자에게 사진을 찍거나 음식을 추가하라는 메시지 표시 (선택 사항)
-            // Toast.makeText(requireContext(), "기록할 음식 사진이나 정보가 없습니다.", Toast.LENGTH_SHORT).show()
-            // return // 저장을 막을 수도 있음
-        }
+        // 사진 저장 안할 경우 메세지. 일단 주석.
+//        if (recognizedFoodItems.isEmpty() && binding.imageViewPreview.drawable == null) {
+//            // 사용자에게 사진을 찍거나 음식을 추가하라는 메시지 표시 (선택 사항)
+//            // Toast.makeText(requireContext(), "기록할 음식 사진이나 정보가 없습니다.", Toast.LENGTH_SHORT).show()
+//            // return // 저장을 막을 수도 있음
+//        }
 
         val currentDate = java.text.SimpleDateFormat("yyyy-MM-dd", java.util.Locale.getDefault()).format(java.util.Date())
         val totalCalorie = recognizedFoodItems.sumOf { it.calorie }
@@ -273,7 +278,7 @@ class DiaryWriteFragment : Fragment() {
         )
 
         // TODO: DiaryManager를 사용하여 newEntry를 SharedPreferences 또는 Room DB에 저장
-        // DiaryManager.getInstance(requireContext()).addDiaryEntry(newEntry)
+        DiaryManager.getInstance(requireContext()).addDiaryEntry(newEntry)
         Log.d("DiarySave", "저장될 일기: $newEntry")
 
         // 저장 후 이전 화면으로 돌아가거나 사용자에게 피드백
